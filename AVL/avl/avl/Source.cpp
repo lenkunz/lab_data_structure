@@ -1,4 +1,4 @@
-#include<stdio.h>
+﻿#include<stdio.h>
 #include<stdlib.h>
 #include<stdarg.h>
 #include<conio.h>
@@ -194,23 +194,45 @@ void path(node *r, T data){
 	else printf("No data in this BST!");
 }
 
-void printSpace(int space){
-	while (space-- > 7) printf(" ");
+void printSpace(int space, int * sack){
+	int i = 0;
+	while (space-- > 8){
+		if (space % 8 == 7 && sack[i++] == 0){
+			printf("|");
+		}
+		else printf(" ");
+	}
+	while (space-- > 6) printf("|");
 	while (space-- > 2) printf("-");
-	printf("> ");
+	while (space-- > 0) printf(">");
 }
 
-void _print(node *r, int level){
+int toggle(int i){
+	return (i + 1) % 2;
+}
+
+void _print(node *r, int level, int * sack){
 	if (r != NULL){
-		_print(r->right, level + 1);
-		printSpace(3 + 8 * level);
-		printf("%d\n", r->data);
-		_print(r->left, level + 1);
+		int old_sack = sack[level - 1];
+		if (level > 0)
+			sack[level - 1] = old_sack ? 0 : 1;
+		sack[level] = 0;
+		_print(r->right, level + 1, sack);
+
+		printSpace(7 + 8 * level, sack);
+		printf("%3d%c\n", r->data, r->left == NULL && r->right == NULL ? ' ' : '>');
+
+		if (level > 0)
+			sack[level - 1] = old_sack;
+		sack[level] = 1;
+		_print(r->left, level + 1, sack);
 	}
 }
 
 void print(node *r){
-	_print(r, 0);
+	int * sack = (int *)malloc(sizeof(int) * height(r));
+	_print(r, 0, sack);
+	free(sack);
 }
 
 T findMaxAndRemove(node **);
@@ -270,12 +292,11 @@ void add(node **pr, int count, T a, ...){
 
 int main(){
 	node * r = createNode(100);
-	add(&r, 12, 50, 150, 25, 175, 12, 188, 30, 31, 32, 33, 34, 35);
-	remove(&r, 150);
-	remove(&r, 32);
-	remove(&r, 31);
-	remove(&r, 175);
-	remove(&r, 188);
+	for (int i = 90; i <= 110; i++){
+		if (i == 100) continue;
+		add(&r, i);
+	}
+	//add(&r, 14, 50, 150, 25, 175, 12, 188, 30, 31, 32, 33, 34, 35, 37, 39);
 	print(r);
 	return 0;
 }

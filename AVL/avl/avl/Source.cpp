@@ -197,7 +197,7 @@ void path(node *r, T data){
 void printSpace(int space, int * sack){
 	int i = 0;
 	while (space-- > 8){
-		if (space % 8 == 7 && sack[i++] == 0){
+		if (space % 10 == 7 && sack[i++] == 0){
 			printf("|");
 		}
 		else printf(" ");
@@ -219,8 +219,8 @@ void _print(node *r, int level, int * sack){
 		sack[level] = 0;
 		_print(r->right, level + 1, sack);
 
-		printSpace(7 + 8 * level, sack);
-		printf("%3d%c\n", r->data, r->left == NULL && r->right == NULL ? ' ' : '>');
+		printSpace(7 + 10 * level, sack);
+		printf(" %3d %c\n", r->data, r->left == NULL && r->right == NULL ? ' ' : '>');
 
 		if (level > 0)
 			sack[level - 1] = old_sack;
@@ -292,7 +292,7 @@ void add(node **pr, int count, T a, ...){
 
 int main(){
 	node * r = createNode(100);
-	for (int i = 90; i <= 110; i++){
+	for (int i = 100; i <= 180; i++){
 		if (i == 100) continue;
 		add(&r, i);
 	}

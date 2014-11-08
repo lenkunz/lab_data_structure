@@ -290,13 +290,57 @@ void add(node **pr, int count, T a, ...){
 	va_end(va);
 }
 
+// Queue
+typedef struct nodeQ {
+	node * data;
+	nodeQ * next;
+} nodeQ;
+
+nodeQ *createNodeQueue(node *data, nodeQ *next){
+	nodeQ *ret = (nodeQ*)malloc(sizeof(nodeQ));
+	ret->data = data;
+	ret->next = next;
+	return ret;
+}
+
+void enQueue(nodeQ **q, node *data){
+	*q = createNodeQueue(data, *q);
+}
+
+node *deQueue(nodeQ **q){
+	if ((*q) == NULL) return NULL;
+	if ((*q)->next == NULL){
+		node* p = (*q)->data;
+		*q = NULL;
+		return p;
+	} else return deQueue(&(*q)->next);
+}
+
+void breadthFirstSearch(node *n){
+	if (n == NULL) return;
+	printf("- BreadthFirstSearch : ");
+
+	node * use;
+	nodeQ * queue = NULL;
+	enQueue(&queue, n);
+	while ((use = deQueue(&queue)) != NULL){
+		printf("%d ", use->data);
+		if (use->left != NULL)
+			enQueue(&queue, use->left);
+		if (use->right != NULL)
+			enQueue(&queue, use->right);
+	}
+}
+
 int main(){
 	node * r = createNode(100);
-	for (int i = 100; i <= 180; i++){
+	for (int i = 97; i <= 104; i++){
 		if (i == 100) continue;
 		add(&r, i);
 	}
 	//add(&r, 14, 50, 150, 25, 175, 12, 188, 30, 31, 32, 33, 34, 35, 37, 39);
 	print(r);
+	breadthFirstSearch(r);
+	printf("\n");
 	return 0;
 }

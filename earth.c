@@ -26,11 +26,11 @@ void straight(int *ar)
 	{
 
 		int keep = 0;
-		for (int i = j; i >= 0; i--)
+		for (int i = j - 1; i >= 0; i--)
 		{
-			if (ar[i - 1]>ar[i])
+			if (ar[i] > ar[j])
 			{
-				keep = i - 1;
+				keep = i;
 			}
 		}
 		int keep2 = ar[j];

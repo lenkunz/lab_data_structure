@@ -28,7 +28,7 @@ void merge(T * arrs, T * tempArrs, int left, int center, int right){
 	while (indexLeft <= center){
 		tempArrs[indexTemp++] = arrs[indexLeft++];
 	}
-	while (indexRight <= center){
+	while (indexRight <= right){
 		tempArrs[indexTemp++] = arrs[indexRight++];
 	}
 

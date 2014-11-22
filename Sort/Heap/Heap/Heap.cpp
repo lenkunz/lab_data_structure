@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdarg.h>
 #include <conio.h>
 
 void swap(int * heap, int a, int b){

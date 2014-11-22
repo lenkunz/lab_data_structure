@@ -31,7 +31,7 @@ int quick(T * arrs, int start, int end){
 		}
 	}
 
-	while (arrs[indexEnd] > valueUse && indexEnd > start){
+	while (arrs[indexEnd] > valueUse){
 		indexEnd--;
 	}
 

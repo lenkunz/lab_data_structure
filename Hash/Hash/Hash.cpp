@@ -442,18 +442,18 @@ int main(int argc, char ** argv){
 	printSeperator();
 	printf("Successfully create WordList\nTotal size : %d word(s)\n", ret->size);
 
-	HashTable * hashTable = HashTableProcess(ret->words, ret->size);
 	printSeperator();
 	printf("Creating HashTable\n");
+	HashTable * hashTable = HashTableProcess(ret->words, ret->size);
 	printSeperator();
 	printf("Successfully create HashTable\n");
 	printf("HashTable size: %d\n", hashTable->size);
 	printf("Collision: %d\n", hashTable->collision);
 	printf("Used: %d\n", hashTable->used);
 
-	HashTable * hashTableDeletion = DeletionHashTableProcess(ret->words, ret->size);
 	printSeperator();
 	printf("Creating Suggestion HashTable\n");
+	HashTable * hashTableDeletion = DeletionHashTableProcess(ret->words, ret->size);
 	printSeperator();
 	printf("Successfully create HashTable Suggestion\n");
 	printf("HashTable size: %d\n", hashTableDeletion->size);

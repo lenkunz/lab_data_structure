@@ -362,7 +362,7 @@ HashTable * DeletionHashTableProcess(char ** arrs, int dictionaryLength){
 		word = arrs[length++];
 		int length = countWordLength(word);
 		for (int i = 0; i < length; i++){
-			switch (addHash(hashTable, recreateWordWithoutIndex(word, i), word)){
+			switch (addHash(hashTable, recreateWordWithoutIndex(word, i))){
 			case ADDHASH_ERROR:
 				free(hashTable->arrs);
 				free(hashTable);
@@ -427,10 +427,6 @@ void printListWordDeletion(HashTable * hashTable, char * word){
 	}
 }
 
-void printSeperator(){
-	printf("\n=======================================\n\n");
-}
-
 int main(int argc, char ** argv){
 	char filepath[] = "D:\\work\\mine\\class\\lab\\data_structure\\all\\Hash\\full.txt";
 	Dictionary * ret = readFile(filepath);
@@ -440,18 +436,14 @@ int main(int argc, char ** argv){
 	printf("Successfully create WordList\nTotal size : %d word(s)\n", ret->size);
 
 	HashTable * hashTable = HashTableProcess(ret->words, ret->size);
-	printSeperator();
-	printf("Creating HashTable\n");
-	printSeperator();
+	printf("\n=======================================\n\n");
 	printf("Successfully create HashTable\n");
 	printf("HashTable size: %d\n", hashTable->size);
 	printf("Collision: %d\n", hashTable->collision);
 	printf("Used: %d\n", hashTable->used);
 
 	HashTable * hashTableDeletion = DeletionHashTableProcess(ret->words, ret->size);
-	printSeperator();
-	printf("Creating Suggestion HashTable\n");
-	printSeperator();
+	printf("\n=======================================\n\n");
 	printf("Successfully create HashTable Suggestion\n");
 	printf("HashTable size: %d\n", hashTableDeletion->size);
 	printf("Collision: %d\n", hashTableDeletion->collision);
@@ -459,7 +451,7 @@ int main(int argc, char ** argv){
 
 	char c[100] = "word";
 	while(true) {
-		printSeperator();
+		printf("\n=======================================\n\n");
 		printf("Enter the word: ");
 		scanf("%s", c);
 

@@ -437,6 +437,9 @@ int main(int argc, char ** argv){
 	if (ret == NULL){
 		printf("Failed to read file %s", filepath);
 	}
+	printSeperator();
+	printf("Creating word list\n");
+	printSeperator();
 	printf("Successfully create WordList\nTotal size : %d word(s)\n", ret->size);
 
 	HashTable * hashTable = HashTableProcess(ret->words, ret->size);

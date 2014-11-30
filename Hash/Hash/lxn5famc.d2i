@@ -319,7 +319,7 @@ HashTable * rehash(HashTable * hashTable){
 
 HashTable * HashTableProcess(char ** arrs, int dictionaryLength){
 	int length = 0;
-	int size = dictionaryLength * INIT_HASHTABLE_SIZE_RELATE;
+	int size = /*dictionaryLength * INIT_HASHTABLE_SIZE_RELATE*/ 34841;
 
 	HashTable * hashTable = createHashTable(size);
 	size = hashTable->size;
@@ -344,7 +344,7 @@ HashTable * HashTableProcess(char ** arrs, int dictionaryLength){
 			break;
 		}
 
-		if (hashTable->used >= halfsize){
+		/*if (hashTable->used >= halfsize){
 			HashTable * hashTable2 = rehash(hashTable);
 			if (hashTable2 == NULL){
 				return NULL;
@@ -354,7 +354,7 @@ HashTable * HashTableProcess(char ** arrs, int dictionaryLength){
 				size = hashTable->size;
 				halfsize = size / 2;
 			}
-		}
+		}*/
 	}
 
 	return hashTable;
